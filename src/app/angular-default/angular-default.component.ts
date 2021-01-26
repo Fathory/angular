@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AngularDefaultComponent implements OnInit {
 
   constructor() { }
-
+  title = 'angularTodo';
   ngOnInit(): void {
   }
 
