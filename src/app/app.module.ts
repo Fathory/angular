@@ -6,6 +6,7 @@ import {TodoListModule} from './todo-list/todo-list.module';
 import {RouterModule, Routes} from '@angular/router';
 import {TodoListComponent} from './todo-list/todo-list.component';
 import {NotFoundComponent} from './not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     TodoListModule,
+    HttpClientModule,
     RouterModule.forRoot(routes, {useHash: true})
   ],
   providers: [],
