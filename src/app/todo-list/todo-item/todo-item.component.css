@@ -1,0 +1,6 @@
+
+#todo-list-table, #todo-list-table > tr > td, #todo-list-table > tr > th{
+  border-collapse: separate;
+  border-spacing: 0;
+  border: solid 1px #24292e;
+}

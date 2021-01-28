@@ -1,0 +1,7 @@
+
+#done-list-table, #done-list-table > tr > td, #done-list-table > tr > th{
+  border-collapse: separate;
+  border-spacing: 0;
+  border: solid 1px #24292e;
+  text-line-through: double;
+}

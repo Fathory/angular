@@ -1,1 +1,36 @@
-<p>done-list works!</p>
+<div>
+  Done
+  <table id="done-list-table">
+    <tr style="border: solid 1px;" >
+      <th>연번</th>
+      <th>제목</th>
+      <th>마감기한</th>
+      <th>완료여부</th>
+      <th>삭제</th>
+    </tr>
+    <tr *ngFor="let done of doneList; let i = index">
+      <td>
+        {{i + 1}}
+      </td>
+      <td>
+        {{done.title}}
+      </td>
+      <td>
+        {{done.limit_date}}
+      </td>
+      <td>
+        <label>
+          <input type="checkbox" name="done" (click)="moveToTodo(done)">
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="checkbox" name="remove" (click)="removeTodo(done)">
+        </label>
+      </td>
+    </tr>
+  </table>
+  <ul>
+  </ul>
+
+</div>
