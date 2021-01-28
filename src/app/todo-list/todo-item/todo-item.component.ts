@@ -13,6 +13,8 @@ export class TodoItemComponent implements OnInit {
   todoCollectionService: EntityCollectionService<Todo>;
   @Input()
   doneCollectionService: EntityCollectionService<Todo>;
+  @Input()
+  allCollectionService: EntityCollectionService<Todo>;
 
   todoList: Todo[];
   constructor() {
@@ -24,13 +26,13 @@ export class TodoItemComponent implements OnInit {
     });
   }
 
-  moveToDone(todoItem): void {
-    this.todoCollectionService.removeOneFromCache(todoItem);
-    this.doneCollectionService.addOneToCache(todoItem);
+  moveToDone(todoItem: Todo): void {
+    todoItem.done = true;
+    this.allCollectionService.upsertOneInCache(todoItem);
   }
   removeTodo(todoItem: Todo): void {
     if (confirm(`할 일 '${todoItem.title}'을 삭제할까요?`)) {
-      this.todoCollectionService.removeOneFromCache(todoItem);
+      this.allCollectionService.removeOneFromCache(todoItem);
     }
   }
 

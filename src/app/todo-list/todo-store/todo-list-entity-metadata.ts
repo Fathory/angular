@@ -2,6 +2,7 @@ import {DefaultDataServiceConfig, EntityMetadataMap} from '@ngrx/data';
 import {Todo} from '../todo-list.constant';
 
 export const todoListMetadata: EntityMetadataMap = {
+  allItems: {selectId: allItemSelectedId},
   todoItems: {selectId: todoItemSelectedId},
   doneItems: {selectId: doneItemSelectedId}
 };
@@ -14,11 +15,16 @@ export const todoListServiceConfig: DefaultDataServiceConfig = {
 };
 
 // tslint:disable-next-line:typedef
+export function allItemSelectedId<T extends { id: any }>(entity: Todo) {
+  return entity == null ? undefined : entity.id;
+}
+
+// tslint:disable-next-line:typedef
 export function todoItemSelectedId<T extends { id: any }>(entity: Todo) {
-  return entity == null ? undefined : entity.title;
+  return entity == null ? undefined : entity.id;
 }
 
 // tslint:disable-next-line:typedef
 export function doneItemSelectedId<T extends { id: any }>(entity: Todo) {
-  return entity == null ? undefined : entity.title;
+  return entity == null ? undefined : entity.id;
 }

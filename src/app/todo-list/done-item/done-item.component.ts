@@ -12,6 +12,8 @@ export class DoneItemComponent implements OnInit {
   todoCollectionService: EntityCollectionService<Todo>;
   @Input()
   doneCollectionService: EntityCollectionService<Todo>;
+  @Input()
+  allCollectionService: EntityCollectionService<Todo>;
 
   doneList: Todo[];
 
@@ -25,13 +27,13 @@ export class DoneItemComponent implements OnInit {
   }
 
   moveToTodo(doneItem: Todo): void {
-    this.doneCollectionService.removeOneFromCache(doneItem);
-    this.todoCollectionService.addOneToCache(doneItem);
+    doneItem.done = false;
+    this.allCollectionService.upsertOneInCache(doneItem);
   }
 
   removeTodo(doneItem: Todo): void {
     if (confirm(`할 일 '${doneItem.title}'을 삭제할까요?`)) {
-      this.doneCollectionService.removeOneFromCache(doneItem);
+      this.allCollectionService.removeOneFromCache(doneItem);
     }
   }
 }
