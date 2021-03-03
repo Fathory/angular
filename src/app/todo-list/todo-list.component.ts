@@ -34,7 +34,7 @@ export class TodoListComponent implements OnInit {
       const cloneTodo = {...todoItem};
       let id = 0;
       if (cloneTodo) {
-        id = allList.length;
+        id = allList.length + 1;
       }
       cloneTodo.id = id;
       cloneTodo.done = false;
@@ -47,12 +47,14 @@ export class TodoListComponent implements OnInit {
     this.allCollectionService.entities$.subscribe(allList => {
       this.todoCollectionService.clearCache();
       this.doneCollectionService.clearCache();
-      let todoList: Todo[];
-      let doneList: Todo[];
-      doneList = allList.filter(list => list.done);
-      todoList = allList.filter(list => !list.done);
-      this.todoCollectionService.addManyToCache(todoList);
-      this.doneCollectionService.addManyToCache(doneList);
+      if (allList.length !== 0){
+        let todoList: Todo[];
+        let doneList: Todo[];
+        doneList = allList.filter(list => list.done);
+        todoList = allList.filter(list => !list.done);
+        this.todoCollectionService.addManyToCache(todoList);
+        this.doneCollectionService.addManyToCache(doneList);
+      }
     });
   }
 }
